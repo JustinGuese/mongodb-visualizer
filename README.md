@@ -32,11 +32,13 @@ services:
         ports:
         - 5000:5000
         environment:
-            HOST: mongodb # container name of mongodb
-            PORT: 27017 # is default value
-            USERNAME: mongouser
-            PASSWORD: mongopw # please change all this
-            DB: mongodb
+            MONGO_HOST: mongodb # container name of mongodb
+            MONGO_PORT: 27017 # is default value
+            MONGO_USERNAME: mongouser
+            MONGO_PASSWORD: mongopw # please change all this
+            MONGO_DB: mongodb
+            MONGO_COLLECTION: test
+            
 ```
 
 ## kubernetes
@@ -94,6 +96,8 @@ spec:
             value: "mongouser"
           - name: MONGO_DATABASE
             value: "mongodb"
+          - name: MONGO_COLLECTION
+            value: "test"
           - name: MONGO_PASSWORD
             valueFrom:
               secretKeyRef:

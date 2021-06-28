@@ -8,6 +8,7 @@ PORT = int(os.environ["MONGO_PORT"])
 USERNAME = str(os.environ["MONGO_USER"])
 PASSWORD = str(os.environ["MONGO_PASSWORD"])
 DB = str(os.environ["MONGO_DATABASE"])
+COLLECTION = str(os.environ["MONGO_COLLECTION"])
 
 def _connect_mongo(host, port, username, password, db):
     """ A util for making a connection to mongo """
@@ -44,7 +45,7 @@ app = Flask(__name__)
 @app.route("/", methods = ['GET'])
 def index():
     global HOST, PORT, USERNAME, PASSWORD, DB
-    df = read_mongo( HOST, PORT, USERNAME, PASSWORD, DB)
+    df = read_mongo(host=HOST, port=PORT, username=USERNAME, password=PASSWORD, db=DB, collection=)
     return df.to_html()
 
 app.run(host="0.0.0.0")
