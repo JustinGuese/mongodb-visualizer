@@ -33,10 +33,9 @@ def read_mongo(db, collection, query={}, host='localhost', port=27017, username=
 
     # Expand the cursor and construct the DataFrame
     df =  pd.DataFrame(list(cursor))
-
-    # Delete the _id
-    if no_id:
-        del df['_id']
+    if "createdAt" in list(df.columns):
+        df = df.set_index("createdAt")
+        df = df.sort_values(by="createdAt", ascending=False)
 
     return df
 
