@@ -45,7 +45,7 @@ app = Flask(__name__)
 @app.route("/", methods = ['GET'])
 def index():
     global HOST, PORT, USERNAME, PASSWORD, DB
-    df = read_mongo(host=HOST, port=PORT, username=USERNAME, password=PASSWORD, db=DB, collection=)
+    df = read_mongo(host=HOST, port=PORT, username=USERNAME, password=PASSWORD, db=DB, collection=COLLECTION)
     return df.to_html()
 
 app.run(host="0.0.0.0")
