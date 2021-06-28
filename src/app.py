@@ -4,7 +4,7 @@ import os
 from pymongo import MongoClient
 
 HOST = str(os.environ["MONGO_HOST"])
-PORT = str(os.environ["MONGO_PORT"])
+PORT = int(os.environ["MONGO_PORT"])
 USERNAME = str(os.environ["MONGO_USER"])
 PASSWORD = str(os.environ["MONGO_PASSWORD"])
 DB = str(os.environ["MONGO_DATABASE"])

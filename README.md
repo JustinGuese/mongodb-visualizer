@@ -89,7 +89,7 @@ spec:
           - name: MONGO_HOST
             value: "mongodb"
           - name: MONGO_PORT
-            value: 27017
+            value: "27017"
           - name: MONGO_USER
             value: "mongouser"
           - name: MONGO_DATABASE
