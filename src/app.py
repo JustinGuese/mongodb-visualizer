@@ -1,4 +1,6 @@
 from flask import Flask
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 import pandas as pd
 import os
 from pymongo import MongoClient
@@ -40,8 +42,28 @@ def read_mongo(db, collection, query={}, host='localhost', port=27017, username=
     return df
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+
+if os.environ["VIEWERUSER"] and os.environ["VIEWERPWHASH"]:
+    USER = os.environ["VIEWERUSER"]
+    PWHASH = os.environ["VIEWERPWHASH"]
+else:
+    # user test, pw test
+    USER = "test"
+    PWHASH = "pbkdf2:sha256:260000$fAVIMeJbnuBR66K0$5506472ab0bcf53f43b39c27a62fed0c3c6fa59063ed20c90873c1d41c53ca1e"
+
+users = {
+    USER:PWHASH
+}
+
+@auth.verify_password
+def verify_password(username, password):
+    if username in users and \
+            check_password_hash(users.get(username), password):
+        return username
 
 @app.route("/", methods = ['GET'])
+@auth.login_required
 def index():
     global HOST, PORT, USERNAME, PASSWORD, DB
     df = read_mongo(host=HOST, port=PORT, username=USERNAME, password=PASSWORD, db=DB, collection=COLLECTION)

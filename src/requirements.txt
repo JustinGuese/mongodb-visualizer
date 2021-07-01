@@ -1,4 +1,6 @@
 pandas
 flask
+Flask-HTTPAuth
 requests
 pymongo
+werkzeug

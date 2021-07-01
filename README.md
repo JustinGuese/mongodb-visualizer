@@ -4,8 +4,26 @@ really basic tool to print contents of a mongodb table to a pandas to_html() out
 
 # usage
 
+the tool uses basic auth, meaning you have to add vieweruser and viewerpwhash to the environment variables.
+generate a hash running python generatepassword.py or
+
+```
+from werkzeug.security import generate_password_hash
+
+user = input("please enter user")
+pwhash = generate_password_hash(input("please enter password"))
+
+print("please add the following to app.py at users = { '%s':'%s'}"%(user,pwhash))
+```
+
+if no env variable set the default user and password are:
+USER: `test`
+PW: `test`
+
 ### Environment Variables
 
+- VIEWERUSER
+- VIEWERPWHASH
 - HOST 
 - PORT 
 - USERNAME 
