@@ -44,7 +44,7 @@ def read_mongo(db, collection, query={}, host='localhost', port=27017, username=
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-if os.environ["VIEWERUSER"] and os.environ["VIEWERPWHASH"]:
+if "VIEWERUSER" in os.environ and "VIEWERPWHASH" in os.environ:
     USER = os.environ["VIEWERUSER"]
     PWHASH = os.environ["VIEWERPWHASH"]
 else:
