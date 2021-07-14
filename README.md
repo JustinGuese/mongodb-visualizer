@@ -22,13 +22,12 @@ PW: `test`
 
 ### Environment Variables
 
-- VIEWERUSER
-- VIEWERPWHASH
-- HOST 
-- PORT 
-- USERNAME 
-- PASSWORD 
-- DB 
+MONGO_HOST: mongodb # container name of mongodb
+MONGO_PORT: 27017 # is default value
+MONGO_USERNAME: mongouser
+MONGO_PASSWORD: mongopw # please change all this
+MONGO_DATABASE: mongodb
+MONGO_COLLECTION: test
 
 ## docker
 
@@ -54,7 +53,7 @@ services:
             MONGO_PORT: 27017 # is default value
             MONGO_USERNAME: mongouser
             MONGO_PASSWORD: mongopw # please change all this
-            MONGO_DB: mongodb
+            MONGO_DATABASE: mongodb
             MONGO_COLLECTION: test
             
 ```
