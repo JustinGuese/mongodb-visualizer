@@ -69,4 +69,5 @@ def index():
     df = read_mongo(host=HOST, port=PORT, username=USERNAME, password=PASSWORD, db=DB, collection=COLLECTION)
     return df.to_html()
 
-app.run(host="0.0.0.0")
+if __name__() == "__main__":
+    app.run(host="0.0.0.0", debug=True)
